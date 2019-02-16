@@ -1,0 +1,42 @@
+This project holds the Congressional Tweets Dataset which consists of the most recent tweets of the 114th U.S. Congress members (both the House of Representatives and Senate). Most of the tweets are from 2015-2016. These tweets have also been updated with the most accurate frames as of July 2017. If a politician is missing from the dataset it's because their tweets were protected and we couldn't pull them or the name files were accidentally overwritten.
+
+The "congressional_tweets_dataset_2018" directory has one subdirectory: "labeled". 
+(The unlabeled dataset can be found in the "twitter-frames/congressional_dataset_2017/unlabeled" directory.)
+
+The "labeled" directory contains the tweets that are labeled for frame (2017) and moral foundations (2018). The format of the CSV files is as follows: 
+
+Tweet ID, Issue, Second Issue (if there are 2 issues covered by the tweet), 1st Frame, 2nd Frame, 3rd Frame, Political Party (1 for Republican & 2 for Democrat), Time Stamp, First Moral Branch, Second Moral Branch, Polarity.
+
+Cells for second issue and the second and third frames are often empty. 
+
+The issue labels represent the issues the tweet refers to as follows: 
+
+aca -> Affordable Care Act (ACA) or Obamacare
+guns -> Gun control or gun violence 
+isis -> Terrorism 
+lgbt -> LGBTQ 
+abort -> Abortion
+immig -> Immigration
+
+The Moral Foundations labels (1..11) are created like this: 
+    if branch == 1 and polarity == 1:
+		mf = 1
+	elif branch == 1 and polarity == 2:
+		mf = 2
+	elif branch == 2 and polarity == 1:
+		mf = 3
+	elif branch == 2 and polarity == 2:
+		mf = 4
+	elif branch == 3 and polarity == 1:
+		mf = 5
+	elif branch == 3 and polarity == 2:
+		mf = 6
+	elif branch == 4 and polarity == 1:
+		mf = 7
+	elif branch == 4 and polarity == 2:
+		mf = 8
+	elif branch == 5 and polarity == 1:
+		mf = 9
+	elif branch == 5 and polarity == 2:
+		mf = 10
+(If cell 9 has the value of 6, then its MF = 11)
